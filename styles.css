@@ -1,0 +1,1066 @@
+/* Importar fontes do Google Fonts, se desejar */
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); */
+
+/* --- Variáveis CSS --- */
+:root {
+    --primary-color: #A0522D; /* Cor marrom para destaque */
+    --secondary-color: #D2B48C; /* Cor bege claro */
+    --text-color: #333;
+    --light-bg-color: #F8F8F8;
+    --white-color: #FFFFFF;
+    --dark-grey: #555;
+    --transition-speed: 0.3s;
+}
+
+/* --- Reset Básico e Estilos Globais --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura */
+}
+
+html {
+    scroll-behavior: smooth; /* Boa prática para links de âncora */
+    scroll-padding-top: 100px; /* Ajuste este valor! */
+}
+
+
+body {
+    font-family: 'Arial', sans-serif; /* Ou 'Roboto', se importar */
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+}
+
+button:hover {
+    background-color: var(--dark-grey);
+}
+
+
+.reserva-button {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.reserva-button:hover {
+    background-color: var(--dark-grey);
+    color: var(--white-color);
+}
+
+.cta-button {
+    /* ... suas propriedades de background, padding, border, etc. ... */
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    display: inline-block; /* Importante para que padding e margens funcionem como um bloco */
+    text-align: center; /* Centraliza o texto dentro do botão */
+}
+
+/* --- Header --- */
+.main-header {
+    background-color: var(--white-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 70px; /* Ajuste o tamanho do logo */
+     transition: height 0.3s ease;
+}
+
+.main-nav .nav-list {
+    display: flex;
+    gap: 25px;
+}
+
+.main-nav .nav-list a {
+    color: var(--dark-grey);
+    font-weight: bold;
+    padding: 0.5rem 0;
+    transition: color var(--transition-speed) ease;
+}
+
+.main-nav .nav-list a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Menu Hamburger (Para Mobile) --- */
+.hamburger-menu {
+    display: none; /* Esconde por padrão em telas grandes */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    transition: all var(--transition-speed) ease;
+}
+
+/* --- Estilos para o Hero Section --- */
+.hero-section {
+    position: relative;
+    color: var(--white-color);
+    text-align: center;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px; /* Altura mínima para o banner */
+    /* Removido o text-shadow daqui para aplicar no hero-content com o background */
+    overflow: hidden; /* Garante que as imagens de fundo não vazem */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    /* NOVO: Fundo semitransparente e padding para o conteúdo */
+    background-color: rgba(0, 0, 0, 0.4); /* Preto com 40% de opacidade */
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra no texto para contraste */
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--white-color);
+}
+
+.hero-section p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.hero-section .carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Coloca o carrossel atrás do conteúdo */
+}
+
+.hero-section .carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Começa com todas as imagens invisíveis */
+    transition: opacity 1s ease-in-out; /* Transição suave de opacidade */
+}
+
+.hero-section .carousel-image.active {
+    opacity: 1; /* Torna a imagem ativa visível */
+}
+
+.hero-section .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--white-color);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    z-index: 20; /* Garante que os botões fiquem acima do carrossel */
+    transition: background-color var(--transition-speed) ease;
+}
+
+.hero-section .carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.hero-section .carousel-button.prev {
+    left: 10px;
+}
+
+.hero-section .carousel-button.next {
+    right: 10px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 20px; /* Posição na parte inferior do carrossel */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    display: flex;
+    gap: 10px; /* Espaço entre os dots */
+    z-index: 20; /* Garante que fiquem acima das imagens */
+}
+
+.carousel-dots .dot {
+    height: 12px;
+    width: 12px;
+    background-color: rgba(255, 255, 255, 0.5); /* Cor branca semitransparente */
+    border-radius: 50%; /* Torna-o circular */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Uma pequena borda para definição */
+}
+
+.carousel-dots .dot.active {
+    background-color: var(--primary-color); /* Cor do dot ativo */
+    transform: scale(1.2); /* Aumenta um pouco o dot ativo */
+    border-color: var(--primary-color); /* Borda do dot ativo */
+}
+
+.carousel-dots .dot:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Cor ao passar o mouse */
+}
+
+/* --- Responsividade: Ajustes para os dots --- */
+@media (max-width: 768px) {
+    .carousel-dots {
+        bottom: 10px; /* Ajuste para telas menores */
+        gap: 8px;
+    }
+
+    .carousel-dots .dot {
+        height: 10px;
+        width: 10px;
+    }
+}
+
+/* --- Seções de Conteúdo --- */
+.content-section {
+    /* Ajuste o max-width para um valor maior (ex: 1100px ou 1200px) */
+    max-width: 1100px; /* OU 1200px, teste qual fica melhor */
+    margin: 4rem auto;
+    /* Aumente o padding para dar mais "respiro" ao conteúdo nas laterais */
+    padding: 30px 40px; /* Antes era 20px */
+    background-color: var(--white-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.content-section p {
+    margin-bottom: 1rem;
+}
+
+.content-section ul {
+    margin-left: 20px;
+    list-style: disc;
+}
+
+.content-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* --- Carrossel de Imagens --- */
+.image-carousel {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    position: relative;
+    overflow: hidden; /* Garante que imagens fora do contêiner sejam cortadas */
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out; /* Transição suave para o slide */
+}
+
+.carousel-image {
+    width: 100%;
+    flex-shrink: 0; /* Impede que as imagens encolham */
+    display: none; /* Esconde todas as imagens por padrão */
+    object-fit: cover; /* Garante que a imagem cubra o espaço */
+    height: 400px; /* Altura fixa para as imagens do carrossel */
+    border-radius: 8px;
+}
+
+.carousel-image.active {
+    display: block; /* Mostra apenas a imagem ativa */
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--white-color);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+/* --- Mídias Sociais --- */
+.social-media {
+    display: flex;
+    gap: 20px;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+
+.social-media img {
+    width: 40px; /* Tamanho dos ícones */
+    height: 40px;
+    transition: transform var(--transition-speed) ease;
+}
+
+.social-media img:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+}
+
+/* --- Formulário de Contato --- */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 20px;
+    background-color: var(--light-bg-color);
+    border-radius: 8px;
+}
+
+.contact-form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.contact-form button {
+    align-self: flex-start; /* Alinha o botão à esquerda */
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--dark-grey);
+    color: var(--white-color);
+    text-align: center;
+    padding: 1.5rem 20px;
+    margin-top: 4rem;
+}
+
+/* --- Responsividade --- */
+
+/* Tablet e Mobile (Telas menores que 768px) */
+@media (max-width: 768px) {
+    .header-content {
+        flex-wrap: wrap; /* Permite que os itens quebrem linha */
+        justify-content: center; /* Centraliza o logo e o menu */
+    }
+
+    .main-nav .nav-list {
+        display: none; /* Esconde a navegação principal por padrão */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: var(--white-color);
+        position: absolute;
+        top: 80px; /* Abaixo do header */
+        left: 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+    }
+
+    .main-nav .nav-list.active {
+        display: flex; /* Mostra a navegação quando a classe 'active' é adicionada via JS */
+    }
+
+    .main-nav .nav-list li {
+        margin: 0.5rem 0;
+    }
+
+    .hamburger-menu {
+        display: flex; /* Mostra o menu hamburger */
+        position: absolute;
+        right: 20px;
+        top: 30px;
+    }
+
+    /* Animação do Hamburger para X */
+    .hamburger-menu.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger-menu.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-section p {
+        font-size: 1.2rem;
+    }
+
+    .content-section {
+        margin: 2rem auto;
+        padding: 15px; /* Manter o padding menor para mobile/tablet */
+    }
+    .carousel-image {
+        height: 300px; /* Altura menor para o carrossel em mobile */
+    }
+
+    .carousel-button {
+        padding: 8px 12px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Mobile (Telas menores que 480px) */
+@media (max-width: 480px) {
+    .header-content {
+        padding: 0 10px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .hero-section {
+        padding: 60px 15px;
+        min-height: 400px;
+    }
+
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    .content-section {
+        padding: 10px;
+    }
+
+    .social-media {
+        gap: 15px;
+    }
+
+    .social-media img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .contact-form button {
+        width: 100%; /* Botão de formulário ocupa a largura total */
+    }
+}
+
+/* --- Estilos para Missão, Visão e Valores (MVV) --- */
+.mvv-container {
+    display: flex; /* Habilita o Flexbox */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
+    justify-content: space-around; /* Distribui os itens uniformemente com espaço entre eles */
+    gap: 30px; /* Espaçamento entre os itens */
+    margin-top: 30px;
+}
+
+.mvv-item {
+    flex: 1; /* Permite que os itens cresçam e ocupem o espaço disponível */
+    min-width: 280px; /* Largura mínima para cada item antes de quebrar a linha */
+    background-color: var(--light-gray-color); /* Fundo leve para destacar */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centraliza o texto dentro de cada item */
+}
+
+.mvv-item h3 {
+    color: var(--primary-color); /* Cor do título */
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.mvv-item p,
+.mvv-item ul {
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.mvv-item ul {
+    list-style: none; /* Remove marcadores de lista padrão */
+    padding: 0;
+    margin-top: 10px;
+}
+
+.mvv-item ul li {
+    margin-bottom: 8px;
+}
+
+.mvv-item ul li strong {
+    color: var(--primary-color);
+}
+
+/* --- Estilos para a Seção do Restaurante com Imagem --- */
+.restaurant-content {
+    display: flex; /* Habilita o Flexbox para alinhar texto e imagem */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
+    align-items: center; /* Centraliza os itens verticalmente */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    gap: 40px; /* Espaço entre o texto e a imagem */
+    margin-top: 30px;
+    text-align: center; /* Centraliza o H2 e o bloco restaurant-content como um todo */
+}
+
+.restaurant-text {
+    flex: 1; /* Permite que o texto ocupe o espaço disponível */
+    min-width: 300px; /* Largura mínima para o bloco de texto */
+    max-width: 600px; /* Largura máxima para o bloco de texto */
+    /* Em telas maiores, este bloco é um flex item. Não precisa de display: flex aqui. */
+    /* Remove text-align: center se estiver aqui */
+}
+
+.restaurant-text p,
+.restaurant-text ul {
+    text-align: left; /* Garante que o texto e a lista sempre iniciem à esquerda */
+    margin-bottom: 15px; /* Espaço entre parágrafos */
+}
+
+.restaurant-text ul {
+    list-style: disc; /* Exibe os marcadores de lista padrão */
+    margin-left: 20px; /* Recuo para a lista */
+    margin-top: 15px;
+    color: var(--text-color);
+}
+
+.restaurant-text ul li {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.restaurant-image {
+    flex-shrink: 0; /* Impede que a imagem encolha demais */
+    width: 300px; /* Tamanho da imagem no desktop */
+    height: 300px; /* Tamanho da imagem no desktop */
+    border-radius: 50%; /* Torna a imagem circular */
+    overflow: hidden; /* Garante que partes da imagem fora do círculo sejam cortadas */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra para destacar a imagem */
+    margin-bottom: 0; /* Resetar margem inferior para desktop */
+}
+
+.restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+    display: block; /* Remove espaço extra abaixo da imagem */
+}
+
+/* --- Responsividade para a Seção do Restaurante --- */
+@media (max-width: 992px) {
+    .restaurant-content {
+        flex-direction: column; /* Empilha o texto e a imagem verticalmente */
+        /* text-align: center; já está na regra geral, não precisa repetir aqui */
+    }
+
+    .restaurant-text {
+        max-width: 90%; /* Ocupa mais largura em telas menores para melhor leitura */
+        width: 100%; /* Garante que ocupe a largura disponível */
+        /* display: flex; flex-direction: column; align-items: center; */
+        /* REMOVEMOS essas propriedades daqui para que o texto e a lista sigam o text-align: left; */
+    }
+
+    /* As regras de text-align: left; já estão na base, então não precisam ser repetidas.
+       Apenas precisamos garantir que o UL tenha margem esquerda para o marcador. */
+    .restaurant-text ul {
+        margin-left: 20px; /* Recua os itens para os marcadores aparecerem */
+    }
+
+    .restaurant-image {
+        margin-bottom: 20px; /* Espaço inferior quando a imagem estiver empilhada */
+    }
+}
+
+@media (max-width: 768px) {
+    .restaurant-image {
+        width: 250px;
+        height: 250px;
+    }
+    .restaurant-text p,
+    .restaurant-text ul {
+        max-width: 95%; /* Ajuste de largura para mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .restaurant-image {
+        width: 200px;
+        height: 200px;
+    }
+    .restaurant-text p,
+    .restaurant-text ul {
+        max-width: 100%; /* Permite ocupar toda a largura disponível em telas muito pequenas */
+    }
+}
+
+/* --- Estilos para a Seção de Comodidades --- */
+#amenities h2 {
+    text-align: left; /* Título alinhado à esquerda */
+    margin-bottom: 30px;
+}
+
+.amenities-content {
+    display: flex; /* Habilita Flexbox para alinhar lista e imagem */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    justify-content: space-between; /* **NOVO:** Distribui a lista para a esquerda e a imagem para a direita */
+    align-items: flex-start; /* Alinha os itens ao topo do contêiner */
+    gap: 50px; /* Espaço entre a lista e a imagem quando empilhados */
+    margin-top: 30px;
+    /* Adicionar para que o flex container se comporte como os outros conteúdos */
+    max-width: 950px; /* **NOVO:** Limita a largura do conteúdo flexível. Ajuste para o mesmo max-width do seu .content-section se for diferente de 900px */
+    margin-left: auto; /* **NOVO:** Centraliza o bloco amenities-content */
+    margin-right: auto; /* **NOVO:** Centraliza o bloco amenities-content */
+}
+
+.amenities-list {
+    /* Define uma largura mais precisa para a lista */
+    width: calc(100% - 250px - 40px); /* 100% menos a largura da imagem e o gap */
+    max-width: 500px; /* Limite máximo para a lista */
+    flex-grow: 1; /* Permite que a lista cresça se houver espaço */
+    text-align: left; /* Garante que o texto da lista comece à esquerda */
+    min-width: 280px; /* Largura mínima para evitar quebras ruins */
+}
+
+.amenities-list ul {
+    list-style: disc; /* Marcadores de lista padrão */
+    margin-left: 20px; /* Recuo para os marcadores */
+    padding: 0;
+}
+
+.amenities-list ul li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.amenities-image {
+    flex-shrink: 0; /* Impede que a imagem encolha demais */
+    width: 250px; /* Largura fixa para a imagem vertical no desktop */
+    height: 350px; /* Altura fixa para criar o formato retangular vertical */
+    border-radius: 8px; /* Cantos levemente arredondados */
+    overflow: hidden; /* Garante que nada saia da borda */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+    margin-bottom: 0; /* Reseta margem inferior para desktop */
+}
+
+.amenities-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o retângulo sem distorcer, cortando se necessário */
+    display: block;
+}
+
+/* --- Responsividade para a Seção de Comodidades --- */
+@media (max-width: 992px) {
+    .amenities-content {
+        flex-direction: column; /* Empilha a lista e a imagem */
+        align-items: center; /* Centraliza a imagem e o bloco da lista quando empilhados */
+        justify-content: center; /* Centraliza o conteúdo da seção quando empilhado */
+        /* Redefine max-width e margens para não conflitar com o comportamento de coluna */
+        max-width: 100%; /* Permite que o conteúdo use mais largura em telas menores */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .amenities-list {
+        width: 100%; /* Ocupa 100% da largura disponível do content-section */
+        max-width: 90%; /* Ajusta para não ficar colada nas bordas em mobile */
+        margin: 0 auto; /* Centraliza o bloco da lista */
+        margin-bottom: 20px; /* Espaço entre a lista e a imagem quando empilhados */
+    }
+
+    .amenities-list ul {
+        margin-left: 20px; /* Garante o recuo para os marcadores */
+        width: fit-content; /* Faz a UL se ajustar ao conteúdo para centralizar como um bloco */
+        margin-right: auto; /* Centraliza o bloco UL */
+        margin-left: auto; /* Centraliza o bloco UL */
+    }
+
+    .amenities-list ul li {
+        text-align: left; /* Garante que o texto da lista está à esquerda */
+    }
+
+
+    .amenities-image {
+        width: 220px; /* Diminui a largura da imagem em tablets */
+        height: 300px; /* Ajusta a altura para manter a proporção retangular */
+        margin-bottom: 0; /* Remove margem inferior aqui, já que a lista vem depois */
+    }
+}
+
+@media (max-width: 768px) {
+    .amenities-image {
+        width: 200px; /* Mais redução para tablets menores */
+        height: 280px;
+    }
+    .amenities-list {
+        max-width: 95%; /* Ajuste fino para a lista */
+    }
+}
+
+@media (max-width: 480px) {
+    .amenities-image {
+        width: 180px; /* Redução para celulares */
+        height: 250px;
+    }
+    .amenities-list ul {
+        margin-left: 15px; /* Reduz o recuo da lista para telas muito pequenas */
+    }
+}
+
+---
+/* --- Estilos para a Seção de Contato --- */
+#contact h2 {
+    text-align: center; /* Centraliza o título "Fale Conosco" */
+    margin-bottom: 30px;
+}
+
+.contact-content {
+    display: flex; /* Habilita Flexbox para as colunas */
+    flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
+    justify-content: center; /* Centraliza as colunas horizontalmente */
+    gap: 300px; /* Espaço entre as duas colunas (contato e redes sociais) */
+    max-width: 900px; /* Limita a largura do conteúdo, ajuste para o mesmo do .content-section */
+    margin: 0 auto; /* Centraliza o bloco contact-content */
+    padding: 20px 0; /* Um pouco de padding vertical */
+}
+
+.contact-info {
+    flex: 1; /* Permite que as informações de contato ocupem o espaço disponível */
+    min-width: 280px; /* Largura mínima para o bloco de informações */
+    max-width: 450px; /* Largura máxima para o bloco de informações */
+    text-align: left; /* Alinha o texto das informações à esquerda */
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.social-media-column {
+    flex-shrink: 0; /* Impede que a coluna das redes sociais encolha demais */
+    width: 200px; /* Largura fixa para a coluna das redes sociais */
+    text-align: center; /* Centraliza o h3 e os ícones dentro desta coluna */
+    padding-top: 5px; /* Alinha o h3 um pouco mais abaixo para ficar mais nivelado */
+}
+
+.social-media-column h3 {
+    font-size: 1.3rem; /* Tamanho do título "Acompanhe nossas redes" */
+    color: var(--heading-color);
+    margin-bottom: 20px;
+}
+
+.social-media {
+    display: flex; /* Habilita Flexbox para os ícones */
+    justify-content: center; /* Centraliza os ícones dentro da coluna */
+    gap: 20px; /* Espaço entre os ícones das redes sociais */
+}
+
+.social-media img {
+    width: 40px; /* Tamanho dos ícones */
+    height: 40px;
+    transition: transform 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+.social-media img:hover {
+    transform: translateY(-5px); /* Levanta o ícone ao passar o mouse */
+}
+
+/* --- Responsividade para a Seção de Contato --- */
+@media (max-width: 768px) {
+    .contact-content {
+        flex-direction: column; /* Empilha as colunas em telas menores */
+        align-items: center; /* Centraliza os itens empilhados */
+        gap: 30px; /* Reduz o espaço entre os blocos empilhados */
+        padding: 15px 0;
+    }
+
+    .contact-info {
+        max-width: 90%; /* Aumenta a largura em telas menores para melhor leitura */
+        text-align: center; /* Centraliza o texto em mobile */
+    }
+
+    .social-media-column {
+        width: 100%; /* Ocupa a largura total disponível */
+        max-width: 250px; /* Limita a largura máxima da coluna social-media em mobile para não ficar muito larga */
+        margin-top: 10px; /* Espaço entre a informação de contato e as redes sociais */
+    }
+    .social-media-column h3 {
+        margin-bottom: 15px; /* Ajusta a margem do título em mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-info {
+        font-size: 1rem; /* Diminui o tamanho da fonte em celulares */
+    }
+    .social-media img {
+        width: 35px; /* Diminui o tamanho dos ícones em celulares */
+        height: 35px;
+    }
+}
+
+/* --- Estilos para a Seção de Endereço --- */
+#address h2 {
+    text-align: left; /* Título "Localização" alinhado à esquerda */
+    margin-bottom: 30px; /* **Manter assim, pois controla a distância do h2 para o que vem antes, não para o conteúdo abaixo.** */
+}
+
+.address-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; /* Centraliza verticalmente o conteúdo das colunas */
+    justify-content: center; /* Centraliza o grupo de colunas */
+    gap: 40px; /* Espaço entre as colunas, ajuste se necessário */
+    margin-top: 15px; /* **AJUSTADO: Reduz a distância do conteúdo para o título.** */
+    max-width: 950px; /* Limita a largura do conteúdo, ajuste para o mesmo max-width do seu .content-section */
+    margin-left: auto; /* Centraliza o bloco address-content */
+    margin-right: auto; /* Centraliza o bloco address-content */
+    padding: 20px 0;
+}
+
+.address-info {
+    flex: 1;
+    min-width: 280px;
+    max-width: 450px;
+    text-align: left;
+}
+
+.address-info p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.address-map {
+    flex-shrink: 0;
+    width: 450px;
+    height: auto;
+    max-width: 100%;
+    text-align: center;
+}
+
+.address-map h3 {
+    font-size: 1.3rem;
+    color: var(--heading-color);
+    margin-bottom: 15px;
+}
+
+.address-map iframe {
+    width: 100%;
+    height: 250px;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Responsividade para a Seção de Endereço --- */
+@media (max-width: 992px) {
+    .address-content {
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 15px; /* **AJUSTADO: Manter a distância menor em mobile também** */
+    }
+
+    .address-info {
+        max-width: 90%;
+        margin: 0 auto 20px auto;
+        text-align: center;
+    }
+
+    .address-map {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin-top: 10px;
+    }
+
+    .address-map iframe {
+        height: 200px;
+    }
+
+    .address-map h3 {
+        margin-bottom: 15px;
+    }
+}
+
+/* --- Estilos para a Linha de Crédito --- */
+.credits {
+    text-align: center; /* Centraliza o texto */
+    padding: 5px; /* Espaçamento interno */
+    background-color: var(--background-color); /* Fundo igual ao da seção principal */
+    color: var(--text-color); /* Cor do texto */
+    font-size: 0.9rem; /* Tamanho da fonte menor */
+    margin-top: 0px; /* Espaço do footer para a linha de crédito */
+    border-top: 1px solid var(--border-color); /* Linha sutil no topo para separar */
+}
+
+.credits p {
+    margin: 0; /* Remove margem padrão de parágrafo */
+}
+
+.credits a {
+    color: var(--primary-color); /* Cor do link, use a cor principal do seu tema */
+    text-decoration: none; /* Remove sublinhado padrão */
+    font-weight: bold; /* Deixa o texto do link em negrito */
+    transition: color 0.3s ease; /* Transição suave para o hover */
+}
+
+.credits a:hover {
+    color: var(--accent-color); /* Cor ao passar o mouse, ou outra cor que combine */
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+/* --- Utilitários / Botões Flutuantes --- */
+.floating-buttons {
+    position: fixed;
+    bottom: 20px; /* Distância do fundo da tela */
+    right: 20px; /* Distância da direita da tela */
+    z-index: 999; /* Garante que fique acima de outros conteúdos */
+    display: flex;
+    flex-direction: column; /* Empilha os botões verticalmente */
+    gap: 15px; /* Espaço entre os botões */
+    align-items: center; /* Centraliza os botões na coluna */
+}
+
+.floating-buttons a {
+    display: flex; /* Para centralizar o ícone/imagem dentro do link */
+    justify-content: center;
+    align-items: center;
+    width: 50px; /* Tamanho do círculo/quadrado do botão */
+    height: 50px;
+    background-color: var(--primary-color); /* Cor de fundo padrão */
+    border-radius: 50%; /* Torna o botão circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+    transition: background-color var(--transition-speed) ease, transform 0.3s ease;
+}
+
+.floating-buttons a:hover {
+    background-color: var(--dark-grey); /* Muda a cor ao passar o mouse */
+    transform: translateY(-3px); /* Pequeno efeito de "levantar" */
+}
+
+.floating-buttons img {
+    width: 60%; /* Tamanho da imagem dentro do botão */
+    height: 60%;
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+}
+
+/* Estilo específico para o ícone SVG (arrow-up) */
+.floating-buttons .icon.arrow-up {
+    width: 60%; /* Ajuste o tamanho do SVG */
+    height: 60%;
+    fill: var(--white-color); /* Preenche o SVG com a cor branca */
+}
+
+/* Ocultar o botão "Voltar ao Topo" por padrão e mostrá-lo com JS */
+.back-to-top {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Impede cliques quando invisível */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Permite cliques quando visível */
+}
+
+/* Responsividade para botões flutuantes */
+@media (max-width: 768px) {
+    .floating-buttons {
+        bottom: 15px;
+        right: 15px;
+        gap: 10px;
+    }
+
+    .floating-buttons a {
+        width: 45px;
+        height: 45px;
+    }
+}
